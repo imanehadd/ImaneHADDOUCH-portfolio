@@ -1,1 +1,4 @@
-
+Type: CNAME
+Host: www
+Value: imanehadd.github.io
+TTL: 3600 (ou valeur par défaut)
