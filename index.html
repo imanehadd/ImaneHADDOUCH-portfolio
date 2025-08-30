@@ -1,0 +1,887 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Imane Haddouch - Data Analyst Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Data Analyst skilled in Power BI, SQL & Python. Empowering organizations to unlock hidden value in their data." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<!-- Add Font Awesome for icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+		<style>
+			/* Custom styles for portfolio enhancement */
+			.skills-grid { 
+				display: grid; 
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+				gap: 1.5rem; 
+				margin-top: 2rem; 
+			}
+			.skill-category { 
+				background: rgba(255,255,255,0.05); 
+				padding: 1.5rem; 
+				border-radius: 8px; 
+				border-left: 4px solid #ed4545; 
+			}
+			.skill-category h4 { 
+				color: #ed4545; 
+				margin-bottom: 0.5rem; 
+			}
+			.skill-tags { 
+				display: flex; 
+				flex-wrap: wrap; 
+				gap: 0.5rem; 
+				margin-top: 1rem; 
+			}
+			.skill-tag { 
+				background: rgba(213, 82, 82, 0.2); 
+				color: #060606; 
+				padding: 0.25rem 0.75rem; 
+				border-radius: 15px; 
+				font-size: 0.85rem; 
+			}
+			.experience-timeline { 
+				margin-top: 2rem; 
+			}
+			.timeline-item { 
+				margin-bottom: 2.5rem; 
+				padding-left: 2rem; 
+				border-left: 2px solid #ed4545; 
+				position: relative;
+				transition: all 0.3s ease;
+			}
+			.timeline-item::before { 
+				content: ''; 
+				position: absolute; 
+				left: -8px; 
+				top: 0; 
+				width: 14px; 
+				height: 14px; 
+				background: #ed4545; 
+				border-radius: 50%; 
+			}
+			.timeline-item:target {
+				background: rgba(237, 69, 69, 0.15);
+				border-radius: 8px;
+				padding: 1.5rem 1.5rem 1.5rem 2rem;
+				border-left: 4px solid #ed4545;
+				box-shadow: 0 0 25px rgba(237, 69, 69, 0.4);
+				transform: scale(1.02);
+				animation: highlightPulse 2s ease-in-out;
+			}
+
+			@keyframes highlightPulse {
+				0%, 100% { 
+					box-shadow: 0 0 25px rgba(237, 69, 69, 0.4); 
+				}
+				50% { 
+					box-shadow: 0 0 35px rgba(237, 69, 69, 0.6); 
+				}
+			}
+			.timeline-date { 
+				color: #ed4545; 
+				font-weight: bold; 
+				margin-bottom: 0.5rem; 
+			}
+			.timeline-company { 
+				color: #ccc; 
+				font-size: 0.9rem; 
+			}
+			.achievement-list { 
+				list-style: none; 
+				padding: 0; 
+			}
+			.achievement-list li { 
+				padding: 0.25rem 0; 
+			}
+			.achievement-list li::before { 
+				content: '▸'; 
+				color: #ed4545; 
+				font-weight: bold; 
+				margin-right: 0.5rem; 
+			}
+			.contact-info { 
+				display: flex; 
+				flex-wrap: wrap; 
+				gap: 1rem; 
+				justify-content: center; 
+				margin: 1rem 0; 
+			}
+			.contact-item { 
+				display: flex; 
+				align-items: center; 
+				gap: 0.5rem; 
+			}
+			
+			/* Updated Languages Section to match Skills style */
+			.languages-grid { 
+				display: grid; 
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+				gap: 1.5rem; 
+				margin-top: 2rem; 
+			}
+			.language-category { 
+				background: rgba(255,255,255,0.05); 
+				padding: 1.5rem; 
+				border-radius: 8px; 
+				border-left: 4px solid #ed4545; 
+				text-align: center;
+			}
+			.language-category h4 { 
+				color: #ed4545; 
+				margin-bottom: 0.5rem; 
+				font-size: 1.2rem;
+			}
+			.language-level { 
+				background: rgba(213, 82, 82, 0.2); 
+				color: #060606; 
+				padding: 0.5rem 1rem; 
+				border-radius: 15px; 
+				font-size: 0.9rem; 
+				display: inline-block;
+				margin-top: 0.5rem;
+				font-weight: bold;
+			}
+			
+			/* Language proficiency colors */
+			.level-native { background: rgba(46, 204, 113, 0.3); color: #27ae60; }
+			.level-advanced { background: rgba(52, 152, 219, 0.3); color: #3498db; }
+			.level-beginner { background: rgba(241, 196, 15, 0.3); color: #f39c12; }
+
+			/* NEW PROJECTS SECTION STYLES */
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+				padding: 2rem 0;
+			}
+
+			.project-card {
+				background: rgba(255,255,255,0.05);
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				position: relative;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				border: 2px solid transparent;
+				border-top: 4px solid #ed4545;
+				overflow: hidden;
+				display: block;
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.project-card:hover,
+			.project-card:focus {
+				transform: translateY(-5px) scale(1.03);
+				box-shadow: 0 10px 30px rgba(237, 69, 69, 0.3);
+				border-color: #ed4545;
+				background: rgba(237, 69, 69, 0.08);
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.project-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(237, 69, 69, 0.1), transparent);
+				transition: left 0.5s ease;
+			}
+
+			.project-card:hover {
+				transform: translateY(-5px) scale(1.03);
+				box-shadow: 0 10px 30px rgba(237, 69, 69, 0.3);
+				border-color: #ed4545;
+				background: rgba(237, 69, 69, 0.08);
+			}
+
+			.project-card:hover::before {
+				left: 100%;
+			}
+
+			.project-icon {
+				font-size: 3rem;
+				color: #ed4545;
+				margin-bottom: 1rem;
+				transition: all 0.3s ease;
+			}
+
+			.project-card:hover .project-icon {
+				transform: scale(1.1) rotate(5deg);
+				color: #ff6b6b;
+				text-shadow: 0 0 20px rgba(237, 69, 69, 0.5);
+			}
+
+			.project-card h3 {
+				color: #000000 !important; /* Bold black color */
+				margin-bottom: 1rem;
+				font-size: 1.3rem;
+				font-weight: 700 !important; /* Extra bold weight */
+				text-shadow: none; /* Remove any text shadow */
+				letter-spacing: 0.5px; /* Slight letter spacing for clarity */
+			}
+
+			/* Ensure the title remains black even on hover */
+			.project-card:hover h3 {
+				color: #000000 !important;
+				font-weight: 700 !important;
+			}
+
+			.project-card p {
+				color: #ccc;
+				line-height: 1.6;
+				margin-bottom: 1.5rem;
+			}
+
+			.company-tag {
+				background: linear-gradient(135deg, #ed4545, #ff6b6b);
+				color: white;
+				padding: 0.5rem 1rem;
+				border-radius: 20px;
+				font-size: 0.85rem;
+				font-weight: bold;
+				display: inline-block;
+				margin-top: 0.5rem;
+				transition: all 0.3s ease;
+			}
+
+			.project-card:hover .company-tag {
+				transform: scale(1.05);
+				box-shadow: 0 5px 15px rgba(237, 69, 69, 0.4);
+			}
+
+			/* Click effect */
+			.project-card:active {
+				transform: translateY(-2px) scale(0.98);
+			}
+
+			/* Mobile responsiveness */
+			@media screen and (max-width: 736px) {
+				.projects-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+					padding: 1rem 0;
+				}
+				
+				.project-card {
+					padding: 1.5rem;
+				}
+				
+				.project-icon {
+					font-size: 2.5rem;
+				}
+			}
+
+			/* Styles pour la section About Me - Organisation propre */
+			#about .content-wrapper {
+				padding-left: 2rem;
+			}
+			
+			#about p {
+				font-size: 1.1rem;
+				line-height: 1.7;
+				margin-bottom: 1.5rem;
+				text-align: justify;
+			}
+
+			/* Mobile responsiveness pour About */
+			@media screen and (max-width: 736px) {
+				#about .content-wrapper {
+					padding-left: 0 !important;
+					margin-top: 2rem;
+				}
+				#about .col-12-mobile {
+					text-align: center;
+				}
+				#about p {
+					text-align: left;
+				}
+			}
+
+			/* Smooth scroll behavior */
+			html {
+				scroll-behavior: smooth;
+			}
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">Imane HADDOUCH</a></h1>
+								<hr />
+								<p>Data Analyst | Power BI Expert | BI & AI Developer</p>
+								<!-- Contact Information -->
+								<div class="contact-info">
+									<div class="contact-item">
+										<i class="fas fa-envelope"></i>
+										<span>imanehaddouch06@gmail.com</span>
+									</div>
+									<div class="contact-item">
+										<i class="fas fa-phone"></i>
+										<span>(+212) 707740117</span>
+									</div>
+									<div class="contact-item">
+										<i class="fas fa-map-marker-alt"></i>
+										<span>Fès, Morocco</span>
+									</div>
+								</div>
+							</header>
+							<footer>
+								<a href="#banner" class="button circled scrolly">Explore</a>
+							</footer>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="#about">About</a></li>
+								<li><a href="#projects">Projects</a></li>
+								<li><a href="#skills">Skills</a></li>
+								<li><a href="#experiences">Experiences</a></li>
+								<li><a href="#contact">Contact</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Banner -->
+				<section id="banner">
+					<header>
+						<h2>Transforming <strong>Data into Insights</strong></h2>
+						<p>
+							Skilled in Power BI developpement, SQL & Python — Empowering organizations to unlock hidden value in
+							their data. Fueling my growth in ML, LLMs & AI to build scalable, insight-driven solutions.
+						</p>
+					</header>
+				</section>
+
+			<!-- Updated Projects Section -->
+			<div class="wrapper style1">
+				<section id="projects" class="container special">
+					<header>
+						<h2>Featured Projects</h2>
+						<p>Click on any project to explore the corresponding professional experience</p>
+					</header>
+					
+					<div class="projects-grid">
+						<!-- Project 1: Dashboards Migration -->
+						<a href="#alten-maroc" class="project-card">
+							<div class="project-icon">
+								<i class="fas fa-chart-bar"></i>
+							</div>
+							<h3>Dashboards Migration</h3>
+							<p>Migrated, optimized and maintained 52 interactive dashboards and reports using Power BI, SQL & DataFlow for internal stakeholders.</p>
+							<span class="company-tag">ALTEN MAROC</span>
+						</a>
+
+						<!-- Project 2: Fleet Data Analytics -->
+						<a href="#alten-maroc" class="project-card">
+							<div class="project-icon">
+								<i class="fas fa-truck"></i>
+							</div>
+							<h3>Vehicle Fleet Analytics</h3>
+							<p>Monitored and analyzed vehicle fleet data within SI-R project to optimize operational efficiency using real-time data processing.</p>
+							<span class="company-tag">ALTEN MAROC</span>
+						</a>
+						
+						<!-- Project 3: Diabetes Prediction System -->
+						<a href="#meriskill" class="project-card">
+							<div class="project-icon">
+								<i class="fas fa-heartbeat"></i>
+							</div>
+							<h3>Diabetes Prediction System</h3>
+							<p>ML-powered Django web app with 22% accuracy improvement using scikit-learn and clinical data analysis. Executed data preprocessing & EDA on 8 diagnostic features.</p>
+							<span class="company-tag">MERISKILL</span>
+						</a>
+
+						<!-- Project 4: Sales Analytics Dashboard -->
+						<a href="#meriskill" class="project-card">
+							<div class="project-icon">
+								<i class="fas fa-chart-line"></i>
+							</div>
+							<h3>Sales Analytics Dashboard</h3>
+							<p>Power BI dashboard identifying sales trends, top-performing products, and revenue metrics for data-driven business decisions.</p>
+							<span class="company-tag">MERISKILL</span>
+						</a>
+
+						<!-- Project 5: ERP Business Process -->
+						<a href="#ngbs" class="project-card">
+							<div class="project-icon">
+								<i class="fas fa-cogs"></i>
+							</div>
+							<h3>ERP Digital Transformation</h3>
+							<p>Led digital transformation projects for 3 enterprise clients with 95% compliance with requirements and comprehensive process redesign.</p>
+							<span class="company-tag">NGBS</span>
+						</a>
+
+						<!-- Project 6: TalentScan AI -->
+						<a href="https://app--talent-scan-ai-5cc14724.base44.app/Dashboard" class="project-card" target="_blank" rel="noopener">
+							<div class="project-icon">
+								<i class="fas fa-user-astronaut"></i>
+							</div>
+							<h3>TalentScan AI</h3>
+							<p>AI-Powered Career Intelligence Platform for Professionals</p>
+							<span class="company-tag">TalentScan AI</span>
+						</a>
+					</div>
+				</section>
+			</div>
+
+			<!-- About Section -->
+			<div class="wrapper style2">
+				<section id="about" class="container special">
+					<div class="row gtr-150">
+						<!-- Image Column -->
+						<div class="col-4 col-12-mobile">
+							<a href="#" class="image featured">
+								<img src="images/pic06.jpg" alt="About Imane Haddouch" style="border-radius: 8px;" />
+							</a>
+						</div>
+						
+						<!-- Content Column -->
+						<div class="col-8 col-12-mobile">
+							<div class="content-wrapper">
+								<header>
+									<h2><a href="#">About Me</a></h2>
+									<p>
+										<strong>Passionate Data Analyst with expertise in transforming complex datasets into actionable business insights</strong>
+									</p>
+								</header>
+								
+								<p>
+									With a Master's in Management Information Systems and hands-on experience at ALTEN MAROC, I specialize in
+									data analysis, business intelligence, and dashboard development solutions. My experience ranges from collecting
+									and processing data from diverse sources such as Oracle and Databricks, working with ETL & ELT processes in Dataflows,
+									to developing interactive Power BI dashboards and maintaining them after publication in Power BI Service to support
+									strategic decision-making.
+								</p>
+								
+								<p>
+									Currently, I am expanding my expertise in ML and AI to design scalable, insight-driven solutions. I am always eager to learn
+									new things and constantly seek to improve my skills by taking on new challenges, as I see them as excellent opportunities
+									to gain experience and learn by doing. My analytical mindset, combined with strong collaboration skills, enables me to bridge 
+									the gap between technical complexity and business value.
+								</p>
+								
+								<footer>
+									<a href="#skills" class="button scrolly">View My Skills</a>
+								</footer>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		
+			<!-- Skills Section -->
+			<div class="wrapper style1">
+				<section id="skills" class="container special">
+					<header>
+						<h2>Technical Expertise & Professional Skills</h2>
+						<p>Comprehensive skill set spanning data analysis, machine learning, automation, business intelligence, and programming</p>
+					</header>
+					
+					<div class="skills-grid">
+						<div class="skill-category">
+							<h4><i class="fas fa-chart-line"></i> Data Analysis</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Power BI</span>
+								<span class="skill-tag">SQL</span>
+								<span class="skill-tag">Oracle</span>
+								<span class="skill-tag">Databricks</span>
+								<span class="skill-tag">Power Automate</span>
+								<span class="skill-tag">Data Modeling</span>
+								<span class="skill-tag">EDA</span>
+								<span class="skill-tag">DataFlow</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-robot"></i> Machine Learning</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Scikit-learn</span>
+								<span class="skill-tag">Predictive Modeling</span>
+								<span class="skill-tag">Model Optimization</span>
+								<span class="skill-tag">Forecasting</span>
+								<span class="skill-tag">ARIMA</span>
+								<span class="skill-tag">Time Series Analysis</span>
+								<span class="skill-tag">Regression Models</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-cogs"></i> AI Automation & Workflow Orchestration</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">n8n</span>
+								<span class="skill-tag">AI Agent Development</span>
+								<span class="skill-tag">AI Automation</span>
+								<span class="skill-tag">Workflow Design & Automation</span>
+								<span class="skill-tag">System Integration (iPaaS)</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-code"></i> Programming</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Python</span>
+								<span class="skill-tag">Pandas</span>
+								<span class="skill-tag">NumPy</span>
+								<span class="skill-tag">Matplotlib</span>
+								<span class="skill-tag">Seaborn</span>
+								<span class="skill-tag">Django</span>
+								<span class="skill-tag">Jupyter</span>
+								<span class="skill-tag">R</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-business-time"></i> Business Intelligence</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Dashboard Development</span>
+								<span class="skill-tag">KPI Tracking</span>
+								<span class="skill-tag">Data Visualization</span>
+								<span class="skill-tag">Requirements Gathering</span>
+								<span class="skill-tag">Process Optimization</span>
+								<span class="skill-tag">Dashboards Maintenance</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Soft Skills Section -->
+					<header style="margin-top: 3rem;">
+						<h3>Soft Skills & Personal Qualities</h3>
+						<p>Essential interpersonal and professional skills that drive collaboration and success</p>
+					</header>
+					
+					<div class="skills-grid">
+						<div class="skill-category">
+							<h4><i class="fas fa-comments"></i> Communication</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Stakeholder Communication</span>
+								<span class="skill-tag">Cross-functional Collaboration</span>
+								<span class="skill-tag">Requirements Gathering</span>
+								<span class="skill-tag">Technical Documentation</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-lightbulb"></i> Problem Solving</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Analytical Mindset</span>
+								<span class="skill-tag">Problem Analysis</span>
+								<span class="skill-tag">Critical Thinking</span>
+								<span class="skill-tag">Solution-Oriented</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-users"></i> Leadership & Teamwork</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Team Collaboration</span>
+								<span class="skill-tag">Project Leadership</span>
+								<span class="skill-tag">Mentoring & Training</span>
+								<span class="skill-tag">Results-Driven</span>
+							</div>
+						</div>
+						
+						<div class="skill-category">
+							<h4><i class="fas fa-rocket"></i> Personal Development</h4>
+							<div class="skill-tags">
+								<span class="skill-tag">Tech Learning Enthusiast</span>
+								<span class="skill-tag">Adaptability</span>
+								<span class="skill-tag">Continuous Improvement</span>
+								<span class="skill-tag">Innovation Mindset</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Languages Section -->
+					<header style="margin-top: 3rem;">
+						<h3><i class="fas fa-globe"></i> Languages</h3>
+						<p>Multilingual communication skills enabling global collaboration</p>
+					</header>
+					
+					<div class="languages-grid">
+						<div class="language-category">
+							<h4><i class="fas fa-flag"></i> Arabic</h4>
+							<span class="language-level level-native">Native</span>
+						</div>
+						
+						<div class="language-category">
+							<h4><i class="fas fa-flag"></i> French</h4>
+							<span class="language-level level-advanced">Advanced</span>
+						</div>
+						
+						<div class="language-category">
+							<h4><i class="fas fa-flag"></i> English</h4>
+							<span class="language-level level-advanced">Advanced (C2)</span>
+						</div>
+						
+						<div class="language-category">
+							<h4><i class="fas fa-flag"></i> Spanish</h4>
+							<span class="language-level level-beginner">Beginner</span>
+						</div>
+						
+						<div class="language-category">
+							<h4><i class="fas fa-flag"></i> Turkish</h4>
+							<span class="language-level level-beginner">Beginner</span>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Experience Section -->
+			<div class="wrapper style2">
+				<section id="experiences" class="container special">
+					<header>
+						<h2>Professional Experience</h2>
+						<p>Building data-driven solutions across diverse industries</p>
+					</header>
+					
+					<div class="experience-timeline">
+						<!-- Current Role - ALTEN MAROC -->
+						<div class="timeline-item" id="alten-maroc">
+							<div class="timeline-date">Sep 2024 - Present</div>
+							<h3>Data & BI Analyst</h3>
+							<div class="timeline-company">ALTEN MAROC (Hybrid)</div>
+							<ul class="achievement-list">
+								<li>Collected, processed, and cleaned data from diverse sources (Oracle, Databricks, SharePoint)</li>
+								<li>Designed and implemented data models for analysis and reporting</li>
+								<li>Developed interactive Power BI dashboards for internal stakeholders</li>
+								<li>Automated manual tasks using Power Automate flows, improving operational efficiency</li>
+								<li>Monitored vehicle fleet data within SI-R project to optimize operations</li>
+								<li>Resolved resource constraints in Power BI by optimizing data processing</li>
+								<li>Implemented ELT workflows using Power BI Dataflows to efficiently extract, load, then transform data into centralized models for scalable reporting</li>
+							</ul>
+						</div>
+
+						<!-- Internship 1 - NGBS -->
+						<div class="timeline-item" id="ngbs">
+							<div class="timeline-date">Jan 2024 - Jun 2024</div>
+							<h3>IT Business Analyst Intern</h3>
+							<div class="timeline-company">NGBS (On-site)</div>
+							<ul class="achievement-list">
+								<li>Identified customer needs and drafted functional specifications for ERP solutions</li>
+								<li>Designed business processes using UML diagrams</li>
+								<li>Conducted functional tests ensuring 95% compliance with requirements</li>
+								<li>Digitized legacy data and trained 20+ end-users on new systems</li>
+								<li>Oversaw digital transformation projects for 3 enterprise clients</li>
+							</ul>
+						</div>
+
+						<!-- Internship 2 - MERISKILL -->
+						<div class="timeline-item" id="meriskill">
+							<div class="timeline-date">Nov 2023 - Dec 2023</div>
+							<h3>Data Analyst Intern</h3>
+							<div class="timeline-company">MeriSKILL (Remote)</div>
+							<ul class="achievement-list">
+								<li>Developed Power BI Sales Analytics Dashboard for trend identification</li>
+								<li>Built logistic regression model using scikit-learn and NIDDK clinical data</li>
+								<li>Executed data preprocessing & EDA on 8 diagnostic features</li>
+								<li>Engineered Django web app for real-time predictions</li>
+								<li>Improved model accuracy by 22% through feature engineering</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Education -->
+					<header style="margin-top: 3rem;">
+						<h3>Education</h3>
+					</header>
+					<div class="timeline-item">
+						<div class="timeline-date">Jan 2022 - Jun 2024</div>
+						<h3>Master of Management Information Systems</h3>
+						<div class="timeline-company">University Abdelmalik Essadi, Tetouan, Morocco</div>
+					</div>
+
+					<!-- Key Certifications -->
+					<header style="margin-top: 3rem;">
+						<h3>Recent Certifications</h3>
+					</header>
+					<div class="row">
+						<div class="col-6 col-12-mobile">
+							<ul class="achievement-list">
+								<li>Google Data Analytics Professional Certificate (2025)</li>
+								<li>Python for Data Science and AI - IBM (2025)</li>
+								<li>ISTQB Foundation Level (2025)</li>
+								<li>EF-SET English Certificate (C2 Advanced)</li>
+							</ul>
+						</div>
+						<div class="col-6 col-12-mobile">
+							<ul class="achievement-list">
+								<li>Freelance Academy - ALX Venture (2025)</li>
+								<li>Application Security - Complete Guide (2024)</li>
+								<li>Tata Data Visualisation Certificate (2023)</li>
+								<li>Introduction to Data Science - Cisco (2023)</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+
+							<!-- Professional Highlights -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon solid fa-trophy circled"><span class="label">Achievements</span></h2>
+									</header>
+									<ul class="divided">
+										<li>
+											<article class="tweet">
+												Improved ML model accuracy by 22% through advanced feature engineering
+												<span class="timestamp">MeriSKILL Project</span>
+											</article>
+										</li>
+										<li>
+											<article class="tweet">
+												Led digital transformation for 3 enterprise clients
+												<span class="timestamp">NGBS</span>
+											</article>
+										</li>
+										<li>
+											<article class="tweet">
+												Automated workflows reducing operational overhead significantly
+												<span class="timestamp">ALTEN MAROC</span>
+											</article>
+										</li>
+										<li>
+											<article class="tweet">
+												Achieved 95% compliance in functional testing for ERP solutions
+												<span class="timestamp">Business Analysis</span>
+											</article>
+										</li>
+									</ul>
+								</section>
+
+							<!-- Technical Expertise -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon solid fa-cogs circled"><span class="label">Tech Stack</span></h2>
+									</header>
+									<ul class="divided">
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Data Analytics & BI</h3>
+												</header>
+												<span class="timestamp">Power BI, Tableau, SQL, Oracle, Databricks, SharePoint, Dataflows</span>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Machine Learning</h3>
+												</header>
+												<span class="timestamp">Python, Scikit-learn, Forecasting, R</span>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Data Visualization</h3>
+												</header>
+												<span class="timestamp">Matplotlib, Seaborn, Dashboards</span>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Process Automation</h3>
+												</header>
+												<span class="timestamp">Power Automate</span>
+											</article>
+										</li>
+									</ul>
+								</section>
+							
+							<!-- Recent Work -->
+								<section class="col-4 col-12-mobile">
+									<header>
+										<h2 class="icon solid fa-briefcase circled"><span class="label">Recent Projects</span></h2>
+									</header>
+									<ul class="divided">
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Sales Analytics Dashboard</h3>
+												</header>
+												<span class="timestamp">Power BI, SQL, Data Visualization</span>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Diabetes Prediction System</h3>
+												</header>
+												<span class="timestamp">Python, ML, Django, Scikit-learn</span>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>Vehicle Fleet Analytics</h3>
+												</header>
+												<span class="timestamp">Oracle, Databricks, Real-time Data</span>
+											</article>
+										</li>
+										<li>
+											<article class="post stub">
+												<header>
+													<h3>ERP Digital Transformation</h3>
+												</header>
+												<span class="timestamp">Business Analysis, Process Design</span>
+											</article>
+										</li>
+									</ul>
+								</section>
+						</div>
+						<hr />
+						<div class="row">
+							<div class="col-12">
+								<!-- Contact -->
+									<section id="contact" class="contact">
+										<header>
+											<h3>Let's Connect and Collaborate</h3>
+										</header>
+										<p>Ready to transform your data into actionable insights? Let's discuss how I can help your organization unlock the hidden value in your data.</p>
+										<ul class="icons">
+											<li><a href="https://linkedin.com/in/imane-haddouch-7485ba193" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+											<li><a href="mailto:imanehaddouch06@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+											<li><a href="tel:+212707740117" class="icon solid fa-phone"><span class="label">Phone</span></a></li>
+											<li><a href="https://github.com/imanehadd" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+											<li><a href="https://drive.google.com/file/d/1G4sLQN_D5z8qH97Gul723L7RbpC0zdvD/view?usp=sharing" class="icon solid fa-file-pdf"><span class="label">Resume</span></a></li>
+										</ul>
+									</section>
+								<!-- Copyright -->
+									<div class="copyright">
+										<ul class="menu">
+											<li>&copy; 2025 Imane Haddouch. All rights reserved.</li>
+										</ul>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+		
+
+	</body>
+</html>
