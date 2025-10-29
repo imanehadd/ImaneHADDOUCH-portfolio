@@ -1,7 +1,7 @@
 # IMANE HADDOUCH - Data Analyst Portfolio (Light Theme)
 
 ## 🌐 Live Website
-**URL:** https://x4nbbp7ib2xhc.ok.kimi.link
+
 
 ## 📋 What's New
 
