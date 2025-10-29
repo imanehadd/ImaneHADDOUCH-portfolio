@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - IMANE HADDOUCH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2332;
+            --secondary: #ff6b6b;
+            --tertiary: #4ecdc4;
+            --neutral: #f8f9fa;
+            --text: #2c3e50;
+            --accent: #ffd93d;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            background-attachment: fixed;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .lang-switch {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-switch:hover {
+            transform: scale(1.1);
+        }
+        
+        .tech-badge {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .achievement-item {
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--tertiary);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold gradient-text">IMANE HADDOUCH</div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-3xl text-gray-700 focus:outline-none">
+                        &#9776;
+                    </button>
+                </div>
+                <div class="hidden md:flex space-x-8" id="desktop-menu">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-gray-900" data-en="Home" data-fr="Accueil">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-gray-900" data-en="About" data-fr="À Propos">About</a>
+                    <a href="projects.html" class="nav-link text-gray-700 hover:text-gray-900" data-en="Projects" data-fr="Projets">Projects</a>
+                    <a href="contact.html" class="nav-link text-gray-700 hover:text-gray-900" data-en="Contact" data-fr="Contact">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="lang-switch text-sm font-medium" onclick="toggleLanguage()">
+                        <span id="lang-flag">🇺🇸</span> <span id="lang-text">EN</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col items-center justify-center space-y-8 text-2xl text-gray-800 hidden">
+                <button id="close-mobile-menu" class="absolute top-6 right-8 text-4xl text-gray-700">&times;</button>
+                <a href="index.html" class="nav-link" data-en="Home" data-fr="Accueil">Home</a>
+                <a href="about.html" class="nav-link" data-en="About" data-fr="À Propos">About</a>
+                <a href="projects.html" class="nav-link" data-en="Projects" data-fr="Projets">Projects</a>
+                <a href="contact.html" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a>
+                <div class="lang-switch text-sm font-medium mt-8" onclick="toggleLanguage()">
+                    <span id="lang-flag">🇺🇸</span> <span id="lang-text">EN</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-800" data-en="Featured Projects" data-fr="Projets Phares">Featured Projects</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-en="Comprehensive portfolio of data analytics, business intelligence, and automation projects that demonstrate technical expertise and business impact" data-fr="Portfolio complet de projets d'analytique de données, de business intelligence et d'automatisation qui démontrent l'expertise technique et l'impact business">
+                    Comprehensive portfolio of data analytics, business intelligence, and automation projects that demonstrate technical expertise and business impact
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Filters -->
+    <section class="pb-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-3 rounded-lg font-semibold text-white" data-filter="all" data-en="All Projects" data-fr="Tous les Projets">All Projects</button>
+                <button class="filter-btn px-6 py-3 rounded-lg font-semibold bg-gray-200 text-gray-700" data-filter="powerbi" data-en="Power BI" data-fr="Power BI">Power BI</button>
+                <button class="filter-btn px-6 py-3 rounded-lg font-semibold bg-gray-200 text-gray-700" data-filter="ml" data-en="Machine Learning" data-fr="Apprentissage Automatique">Machine Learning</button>
+                <button class="filter-btn px-6 py-3 rounded-lg font-semibold bg-gray-200 text-gray-700" data-filter="automation" data-en="Automation" data-fr="Automatisation">Automation</button>
+                <button class="filter-btn px-6 py-3 rounded-lg font-semibold bg-gray-200 text-gray-700" data-filter="erp" data-en="ERP Solutions" data-fr="Solutions ERP">ERP Solutions</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="pb-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-8" id="projects-grid">
+                
+                <!-- Project 1: Power Automate Workflow Automation -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="automation powerbi">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="ALTEN MAROC" data-fr="ALTEN MAROC">ALTEN MAROC</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="Power Automate Workflow Automation" data-fr="Automatisation de Workflows avec Power Automate">Power Automate Workflow Automation</h3>
+                    <p class="text-gray-600 mb-6" data-en="Automation of manual tasks and repetitive processes using Power Automate flows to reduce manual tasks and improve team efficiency. Design and implementation of workflow automation solutions to meet the needs of massive downloads from S3 bucket links." data-fr="Automatisation des tâches manuelles et des processus répétitifs en utilisant des flux Power Automate pour réduire les taches manuelle et améliorer l'efficacité de l'équipe. Conception et implémentation de solutions d'automatisation de workflows pour répondre aux besoins de téléchargement massive depuis des liens S3 buckets.">
+                        Automation of manual tasks and repetitive processes using Power Automate flows to reduce manual tasks and improve team efficiency. Design and implementation of workflow automation solutions to meet the needs of massive downloads from S3 bucket links.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Key Achievement:" data-fr="Réalisation Clé:">Key Achievement:</div>
+                            <div class="text-sm text-gray-600" data-en="Significant operational overhead reduction through intelligent workflow automation" data-fr="Réduction significative des coûts opérationnels grâce à l'automatisation intelligente des workflows">
+                                Significant operational overhead reduction through intelligent workflow automation
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Power Automate</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">API Integration</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">SharePoint</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">S3 buckets</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Power BI</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Excel</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Sep 2024 - Present" data-fr="Sep 2024 - Présent">Sep 2024 - Present</div>
+                </div>
+
+                <!-- Project 2: Dashboard Migration & Report Optimization -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="powerbi">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="ALTEN MAROC" data-fr="ALTEN MAROC">ALTEN MAROC</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="Dashboard Migration & Report Optimization" data-fr="Migration de Dashboards & Optimisation de Rapports">Dashboard Migration & Report Optimization</h3>
+                    <p class="text-gray-600 mb-6" data-en="Migrated, optimized, and maintained 52 interactive dashboards and reports using Power BI, SQL, and DataFlow for internal stakeholders. Implemented comprehensive optimization strategies including data model restructuring, query optimization, and efficient data processing techniques." data-fr="Migration, optimisation et maintenance de 52 tableaux de bord et rapports interactifs utilisant Power BI, SQL et DataFlow pour les parties prenantes internes. Implémentation de stratégies d'optimisation complètes incluant la restructuration du modèle de données, l'optimisation des requêtes et des techniques de traitement de données efficaces.">
+                        Migrated, optimized, and maintained 52 interactive dashboards and reports using Power BI, SQL, and DataFlow for internal stakeholders. Implemented comprehensive optimization strategies including data model restructuring, query optimization, and efficient data processing techniques.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Performance Impact:" data-fr="Impact Performance:">Performance Impact:</div>
+                            <div class="text-sm text-gray-600" data-en="Load time reduced from 206.6s to 7.6s (96% improvement)" data-fr="Temps de chargement réduit de 206,6s à 7,6s (amélioration de 96%)">
+                                Load time reduced from 206.6s to 7.6s (96% improvement)
+                            </div>
+                        </div>
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Resource Optimization:" data-fr="Optimisation des Ressources:">Resource Optimization:</div>
+                            <div class="text-sm text-gray-600" data-en="73% reduction in Power BI Service consumption" data-fr="Réduction de 73% de la consommation Power BI Service">
+                                73% reduction in Power BI Service consumption
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Power BI</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">SQL</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">DAX</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">DataFlow</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">RLS</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Oracle</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Databricks</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Sep 2024 - Present" data-fr="Sep 2024 - Présent">Sep 2024 - Present</div>
+                </div>
+
+                <!-- Project 3: Custom Power BI Reports -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="powerbi">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="ALTEN MAROC" data-fr="ALTEN MAROC">ALTEN MAROC</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="Developing Power BI Reports Based on User Specifications" data-fr="Développement de Rapports Power BI selon Spécifications Utilisateurs">Developing Power BI Reports Based on User Specifications</h3>
+                    <p class="text-gray-600 mb-6" data-en="Delivered tailored BI solutions and developed custom analytics reports based on specific stakeholder requirements, supporting data-driven decision-making across multiple departments. Designed interactive dashboards supporting data-driven decision-making across multiple departments. Automated report refresh processes and conducted UAT (User Acceptance Testing) to ensure reporting consistency and quality." data-fr="Livraison de solutions BI sur-mesure et développement de rapports d'analytique personnalisés basés sur les exigences spécifiques des parties prenantes, soutenant la prise de décisions basées sur les données dans plusieurs départements. Conception de tableaux de bord interactifs soutenant la prise de décisions basées sur les données dans plusieurs départements. Automatisation des processus d'actualisation des rapports et réalisation de tests UAT (User Acceptance Testing) pour garantir la cohérence et la qualité des rapports.">
+                        Delivered tailored BI solutions and developed custom analytics reports based on specific stakeholder requirements, supporting data-driven decision-making across multiple departments. Designed interactive dashboards supporting data-driven decision-making across multiple departments. Automated report refresh processes and conducted UAT (User Acceptance Testing) to ensure reporting consistency and quality.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Quality Assurance:" data-fr="Assurance Qualité:">Quality Assurance:</div>
+                            <div class="text-sm text-gray-600" data-en="Conducted UAT ensuring reporting consistency and quality" data-fr="Réalisation de tests UAT garantissant la cohérence et la qualité des rapports">
+                                Conducted UAT ensuring reporting consistency and quality
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Power BI</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Oracle</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Databricks</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">SQL</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">UAT</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Sep 2024 - Present" data-fr="Sep 2024 - Présent">Sep 2024 - Present</div>
+                </div>
+
+                <!-- Project 4: Vehicle Fleet Analytics -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="powerbi">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="ALTEN MAROC" data-fr="ALTEN MAROC">ALTEN MAROC</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="Vehicle Fleet Analytics (SI-R Project)" data-fr="Analytique de Flotte de Véhicules (Projet SI-R)">Vehicle Fleet Analytics (SI-R Project)</h3>
+                    <p class="text-gray-600 mb-6" data-en="Monitored and analyzed vehicle fleet data within SI-R project to optimize operational efficiency using real-time data processing. Conducted comprehensive data analysis on vehicle fleet portfolios, maintaining data integrity, data governance, and security across all workflows and databases." data-fr="Surveillance et analyse des données de flotte de véhicules dans le projet SI-R pour optimiser l'efficacité opérationnelle en utilisant le traitement de données en temps réel. Réalisation d'analyses de données complètes sur les portefeuilles de flottes de véhicules, maintien de l'intégrité des données, de la gouvernance des données et de la sécurité dans tous les workflows et bases de données.">
+                        Monitored and analyzed vehicle fleet data within SI-R project to optimize operational efficiency using real-time data processing. Conducted comprehensive data analysis on vehicle fleet portfolios, maintaining data integrity, data governance, and security across all workflows and databases.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Real-time Processing:" data-fr="Traitement en Temps Réel:">Real-time Processing:</div>
+                            <div class="text-sm text-gray-600" data-en="Implemented real-time data processing for fleet monitoring" data-fr="Implémentation du traitement de données en temps réel pour la surveillance de flotte">
+                                Implemented real-time data processing for fleet monitoring
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Real-time Analytics</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">KPI Tracking</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Data Governance</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Sep 2024 - Present" data-fr="Sep 2024 - Présent">Sep 2024 - Present</div>
+                </div>
+
+                <!-- Project 5: ERP Digital Transformation -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="erp">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="NGBS" data-fr="NGBS">NGBS</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="ERP Digital Transformation" data-fr="Transformation Digitale ERP">ERP Digital Transformation</h3>
+                    <p class="text-gray-600 mb-6" data-en="Led digital transformation projects for 3 enterprise clients with 95% compliance with requirements and comprehensive process redesign. Identified client needs, drafted detailed functional specifications, and designed business processes using UML diagrams." data-fr="Direction de projets de transformation digitale pour 3 clients entreprises avec 95% de conformité aux exigences et refonte complète des processus. Identification des besoins clients, rédaction de spécifications fonctionnelles détaillées, et conception de processus business utilisant des diagrammes UML.">
+                        Led digital transformation projects for 3 enterprise clients with 95% compliance with requirements and comprehensive process redesign. Identified client needs, drafted detailed functional specifications, and designed business processes using UML diagrams.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Compliance Rate:" data-fr="Taux de Conformité:">Compliance Rate:</div>
+                            <div class="text-sm text-gray-600" data-en="95% compliance with requirements through rigorous testing" data-fr="95% de conformité aux exigences grâce à des tests rigoureux">
+                                95% compliance with requirements through rigorous testing
+                            </div>
+                        </div>
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="User Training:" data-fr="Formation Utilisateur:">User Training:</div>
+                            <div class="text-sm text-gray-600" data-en="Trained 20+ end-users on new ERP systems" data-fr="Formation de plus de 20 utilisateurs finaux sur les nouveaux systèmes ERP">
+                                Trained 20+ end-users on new ERP systems
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">ERP Solutions</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">UML</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Business Analysis</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Agile</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Jan 2024 - Jun 2024" data-fr="Jan 2024 - Jun 2024">Jan 2024 - Jun 2024</div>
+                </div>
+
+                <!-- Project 6: Diabetes Prediction System -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="ml">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="MeriSKILL" data-fr="MeriSKILL">MeriSKILL</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="Diabetes Prediction System" data-fr="Système de Prédiction du Diabète">Diabetes Prediction System</h3>
+                    <p class="text-gray-600 mb-6" data-en="ML-powered Django web app with 22% accuracy improvement using scikit-learn and NIDDK clinical data analysis. Built predictive analytics model, executed data preprocessing & EDA on 8 diagnostic features, and engineered a web application for real-time predictions." data-fr="Application web Django alimentée par ML avec une amélioration de précision de 22% utilisant scikit-learn et l'analyse de données cliniques NIDDK. Construction d'un modèle d'analytique prédictive, exécution du prétraitement des données et EDA sur 8 caractéristiques diagnostiques, et développement d'une application web pour prédictions en temps réel.">
+                        ML-powered Django web app with 22% accuracy improvement using scikit-learn and NIDDK clinical data analysis. Built predictive analytics model, executed data preprocessing & EDA on 8 diagnostic features, and engineered a web application for real-time predictions.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Model Performance:" data-fr="Performance du Modèle:">Model Performance:</div>
+                            <div class="text-sm text-gray-600" data-en="22% accuracy improvement through feature engineering" data-fr="Amélioration de précision de 22% grâce à l'ingénierie des caractéristiques">
+                                22% accuracy improvement through feature engineering
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Python</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Scikit-learn</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Django</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Pandas</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Feature Engineering</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Nov 2023 - Dec 2023" data-fr="Nov 2023 - Déc 2023">Nov 2023 - Dec 2023</div>
+                </div>
+
+                <!-- Project 7: Sales Analytics Dashboard -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="powerbi">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="MeriSKILL" data-fr="MeriSKILL">MeriSKILL</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="Sales Analytics Dashboard" data-fr="Tableau de Bord d'Analytique des Ventes">Sales Analytics Dashboard</h3>
+                    <p class="text-gray-600 mb-6" data-en="Power BI dashboard identifying sales trends, top-performing products, and revenue metrics for data-driven business decisions. Developed comprehensive dashboard prototypes to analyze portfolios and enable strategic decision-making." data-fr="Tableau de bord Power BI identifiant les tendances de ventes, les produits les plus performants et les métriques de revenus pour des décisions business basées sur les données. Développement de prototypes de dashboards complets pour analyser les portefeuilles et permettre la prise de décisions stratégiques.">
+                        Power BI dashboard identifying sales trends, top-performing products, and revenue metrics for data-driven business decisions. Developed comprehensive dashboard prototypes to analyze portfolios and enable strategic decision-making.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Business Impact:" data-fr="Impact Business:">Business Impact:</div>
+                            <div class="text-sm text-gray-600" data-en="Enabled data-driven decisions through comprehensive sales analytics" data-fr="Permettre des décisions basées sur les données grâce à une analytique des ventes complète">
+                                Enabled data-driven decisions through comprehensive sales analytics
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Power BI</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Sales Analytics</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">KPI Design</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Data Visualization</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Nov 2023 - Dec 2023" data-fr="Nov 2023 - Déc 2023">Nov 2023 - Dec 2023</div>
+                </div>
+
+                <!-- Project 8: TalentScan AI -->
+                <div class="project-card glass-card rounded-xl p-8" data-category="ml automation">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-500" data-en="Personal Project" data-fr="Projet Personnel">Personal Project</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-en="TalentScan AI - Career Intelligence Platform" data-fr="TalentScan AI - Plateforme d'Intelligence de Carrière">TalentScan AI - Career Intelligence Platform</h3>
+                    <p class="text-gray-600 mb-6" data-en="AI-Powered Career Intelligence Platform for Professionals, leveraging AI technologies to provide career insights and recommendations with intelligent automation workflows." data-fr="Plateforme d'Intelligence de Carrière Alimentée par l'IA pour Professionnels, exploitant les technologies d'IA pour fournir des insights de carrière et des recommandations avec des workflows d'automatisation intelligents.">
+                        AI-Powered Career Intelligence Platform for Professionals, leveraging AI technologies to provide career insights and recommendations with intelligent automation workflows.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="achievement-item p-4 rounded-lg">
+                            <div class="text-green-600 font-semibold" data-en="Live Application:" data-fr="Application en Direct:">Live Application:</div>
+                            <div class="text-sm text-gray-600" data-en="Deployed functional application accessible online" data-fr="Application fonctionnelle déployée et accessible en ligne">
+                                Deployed functional application accessible online
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">AI Agents</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">n8n</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">Workflow Automation</span>
+                        <span class="tech-badge px-3 py-1 rounded-full text-xs font-semibold">System Integration</span>
+                    </div>
+                    <!-- Live app link for TalentScan AI -->
+                    <div class="mb-6">
+                        <a href="https://app--talent-scan-ai-5cc14724.base44.app/Dashboard" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white text-red-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all" aria-label="Open TalentScan AI Dashboard (opens in new tab)" data-en="View Live App" data-fr="Voir l'Application">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3h7v7m0 0L10 21l-7-7L14 3z"></path>
+                            </svg>
+                            <span class="text-sm">View Live App</span>
+                        </a>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500" data-en="Personal Project" data-fr="Projet Personnel">Personal Project</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-red-500 to-red-600">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-white" data-en="Interested in Collaborating?" data-fr="Intéressé par une Collaboration ?">Interested in Collaborating?</h2>
+            <p class="text-xl mb-8 opacity-90 text-white" data-en="Let's discuss how these project experiences can benefit your organization" data-fr="Discutons de la manière dont ces expériences de projet peuvent bénéficier à votre organisation">
+                Let's discuss how these project experiences can benefit your organization
+            </p>
+            <a href="contact.html" class="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 inline-block" data-en="Get In Touch" data-fr="Contactez-moi">
+                Get In Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center">
+                <div class="text-2xl font-bold gradient-text mb-4">IMANE HADDOUCH</div>
+                <p class="text-gray-400 mb-6" data-en="Analytics Engineer & BI Developer" data-fr="Ingénieur en Analytique & Développeur BI">Analytics Engineer & BI Developer</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="mailto:imanehaddouch06@gmail.com" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/imane-haddouch-7485ba193" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/imanehadd" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-500 text-sm" data-en="© 2025 Imane Haddouch. All rights reserved." data-fr="© 2025 Imane Haddouch. Tous droits réservés.">
+                        © 2025 Imane Haddouch. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            mobileMenuBtn && mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+            });
+            closeMobileMenu && closeMobileMenu.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
