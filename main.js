@@ -14,7 +14,7 @@ const translations = {
         
         // Hero section
         heroTitle1: 'Analytics',
-        heroTitle2: 'Professional',
+        heroTitle2: 'Data Professional',
         heroDescription: 'Analytics Engineer & BI Developer | Data Analyst | Skilled in Power BI, SQL, Oracle & Databricks | Data Governance & Management | Driving Scalable Data Solutions.',
         viewProjects: 'View Projects',
         getInTouch: 'Get In Touch',
